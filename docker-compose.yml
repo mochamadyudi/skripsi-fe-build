@@ -5,13 +5,11 @@ services:
       - .env
     environment:
       - NODE_ENV=development
-    image: skripsi:${TAG}
+    image: feskripsi:${TAG}
     container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - npm-cache:/root/.npm
     ports:
       - "3000:3000"
   prod:
@@ -19,13 +17,11 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-    image: clientSkripsi:${TAG}-production
+    image: feskripsi:${TAG}-production
     container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - npm-cache/root/.npm
     ports:
       - "3000:3000"
   dev:
@@ -33,15 +29,10 @@ services:
       - .env
     environment:
       - NODE_ENV=development
-    image: clientSkripsi:${TAG}-development
+    image: feskripsi:${TAG}-development
     container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - npm-cache/root/.npm
     ports:
       - "3000:3000"
-volumes:
-  npm-cache:
-    external: false
