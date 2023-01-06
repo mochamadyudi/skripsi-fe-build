@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  stg:
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    image: oc91srv:${TAG}
+    container_name: oc-stg-srv
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - npm-cache:/root/.npm
+    ports:
+      - "5001:5001"
+  prod:
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    image: oc91srv:${TAG}-production
+    container_name: oc-prod-srv
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - npm-cache/root/.npm
+    ports:
+      - "5001:5001"
+  dev:
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    image: oc91srv:${TAG}-development
+    container_name: oc-dev-srv
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - npm-cache/root/.npm
+    ports:
+      - "5001:5001"
+volumes:
+  npm-cache:
+    external: false
