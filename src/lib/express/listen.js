@@ -2,7 +2,7 @@ import { config } from '@yid/config'
 import chalk from 'chalk'
 
 export default (app, port = undefined)=> {
-  app.listen(port || config.server.port, config.server.host, ()=> {
+  app.listen(port || config.server.port,()=> {
     console.log(
       chalk.greenBright(`
 ${chalk.greenBright(`=================================================`)}
