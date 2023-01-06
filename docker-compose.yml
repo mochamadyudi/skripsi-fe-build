@@ -5,43 +5,43 @@ services:
       - .env
     environment:
       - NODE_ENV=development
-    image: oc91srv:${TAG}
-    container_name: oc-stg-srv
+    image: skripsi:${TAG}
+    container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - npm-cache:/root/.npm
     ports:
-      - "5001:5001"
+      - "80:80"
   prod:
     env_file:
       - .env
     environment:
       - NODE_ENV=production
-    image: oc91srv:${TAG}-production
-    container_name: oc-prod-srv
+    image: clientSkripsi:${TAG}-production
+    container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - npm-cache/root/.npm
     ports:
-      - "5001:5001"
+      - "80:80"
   dev:
     env_file:
       - .env
     environment:
       - NODE_ENV=development
-    image: oc91srv:${TAG}-development
-    container_name: oc-dev-srv
+    image: clientSkripsi:${TAG}-development
+    container_name: skripsi_client
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - npm-cache/root/.npm
     ports:
-      - "5001:5001"
+      - "80:80"
 volumes:
   npm-cache:
     external: false
